@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    loadHabits(); // Load saved habits when app starts
+    loadHabits(); 
   }
 
   void loadHabits() {
@@ -32,14 +32,14 @@ class _HomePageState extends State<HomePage> {
   void addHabit(String name) {
     setState(() {
       habits.add({"name": name, "completed": false});
-      saveHabits(); // Save after adding
+      saveHabits();
     });
   }
 
   void toggleHabit(int index) {
     setState(() {
       habits[index]["completed"] = !habits[index]["completed"];
-      saveHabits(); // Save after toggling
+      saveHabits(); 
     });
   }
 
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
       for (var habit in habits) {
         habit["completed"] = false;
       }
-      saveHabits(); // Save after resetting
+      saveHabits(); 
     });
   }
 
@@ -98,10 +98,10 @@ class _HomePageState extends State<HomePage> {
         itemCount: habits.length,
         itemBuilder: (context, index) {
           return ListTile(
-            tileColor: Colors.deepPurple[200], // Habit tile color
+            tileColor: Colors.deepPurple[200],
             title: Text(
               habits[index]["name"],
-              style: const TextStyle(color: Colors.white), // White text
+              style: const TextStyle(color: Colors.white),
             ),
             trailing: Checkbox(
               value: habits[index]["completed"],
