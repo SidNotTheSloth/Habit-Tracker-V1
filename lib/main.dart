@@ -3,10 +3,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'home_page.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Required for async code in main()
+  WidgetsFlutterBinding.ensureInitialized(); 
 
-  await Hive.initFlutter(); // Initialize Hive
-  await Hive.openBox('habitBox'); // Open a Hive storage box
+  await Hive.initFlutter(); 
+  await Hive.openBox('habitBox'); 
 
   runApp(const MyApp());
 }
@@ -20,17 +20,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Habit Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.purple, // Main theme color
-        scaffoldBackgroundColor: Colors.deepPurple[100], // Background
+        primarySwatch: Colors.purple, 
+        scaffoldBackgroundColor: Colors.deepPurple[100], 
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.deepPurple, // AppBar color
+          backgroundColor: Colors.deepPurple, 
           titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.purpleAccent, // FAB color
+          backgroundColor: Colors.purpleAccent, 
         ),
         checkboxTheme: CheckboxThemeData(
-          fillColor: MaterialStatePropertyAll(Colors.purple), // Checkbox color
+          fillColor: MaterialStatePropertyAll(Colors.purple), 
         ),
       ),
       home: const HomePage(),
