@@ -1,39 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'home_page.dart';
+import 'screens/home_page.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); 
-
-  await Hive.initFlutter(); 
-  await Hive.openBox('habitBox'); 
-
-  runApp(const MyApp());
+void main() {
+  runApp(HabitTrackerApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HabitTrackerApp extends StatefulWidget {
+  @override
+  _HabitTrackerAppState createState() => _HabitTrackerAppState();
+}
+
+class _HabitTrackerAppState extends State<HabitTrackerApp> {
+  bool isDarkMode = false;
+
+  void toggleDarkMode() {
+    setState(() {
+      isDarkMode = !isDarkMode;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Habit Tracker',
-      theme: ThemeData(
-        primarySwatch: Colors.purple, 
-        scaffoldBackgroundColor: Colors.deepPurple[100], 
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.deepPurple, 
-          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.purpleAccent, 
-        ),
-        checkboxTheme: CheckboxThemeData(
-          fillColor: MaterialStatePropertyAll(Colors.purple), 
-        ),
-      ),
-      home: const HomePage(),
+      themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      theme:
+          ThemeData(primarySwatch: Colors.purple, brightness: Brightness.light),
+      darkTheme: ThemeData(
+          primarySwatch: Colors.deepPurple, brightness: Brightness.dark),
+      home: HabitHomeScreen(
+          toggleDarkMode: toggleDarkMode, isDarkMode: isDarkMode),
     );
   }
 }
